@@ -14,4 +14,4 @@
 
 Склонируйте репозиторий и откройте `index.html` в современном браузере. Установка зависимостей и сборка не требуются.
 
-[Репозиторий проекта на GitHub](https://github.com/kipertail/slozhno-sosredotochitsya-ad)
+https://github.com/kipertail/slozhno-sosredotochitsya-ad
