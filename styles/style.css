@@ -1,5 +1,265 @@
-/* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
-
 .page {
-  /* сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
+  color: var(--text-color);
+  font-family: var(--font-family);
+  font-size: var(--text-size);
+  line-height: var(--text-leading);
+  color-scheme: var(--color-scheme);
+  background-color: var(--background-color);
+  background-image: var(--background-image);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.decorated-zone {
+  position: relative;
+  display: grid;
+  min-block-size: 668px;
+  block-size: 100vh;
+  padding: var(--page-padding);
+}
+
+.decorated-zone::before,
+.decorated-zone::after {
+  position: absolute;
+  inline-size: 25px;
+  block-size: 25px;
+  color: var(--decoration-color);
+  content: "";
+}
+
+.decorated-zone::before {
+  inset-block-start: var(--page-padding);
+  inset-inline-end: var(--page-padding);
+  border-block-start: 1px solid;
+  border-inline-end: 1px solid;
+}
+
+.decorated-zone::after {
+  inset-block-end: var(--page-padding);
+  inset-inline-start: var(--page-padding);
+  border-block-end: 1px solid;
+  border-inline-start: 1px solid;
+}
+
+.header {
+  grid-template-rows: 1fr min-content 1fr;
+  align-items: center;
+}
+
+.header__recording {
+  position: absolute;
+  inset-block-start: var(--page-padding);
+  inset-inline-end: calc(var(--page-padding) + 9px);
+  display: var(--recording-display);
+  align-items: center;
+  gap: 10px;
+  color: var(--accent-color);
+}
+
+.header__recording::after {
+  inline-size: 9px;
+  block-size: 9px;
+  border-radius: 50%;
+  background-color: currentColor;
+  box-shadow: 0 0 4px 2px currentColor;
+  content: "";
+}
+
+.header__theme-menu {
+  justify-self: end;
+  color: var(--decoration-color);
+}
+
+.header__theme-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header__theme-menu-button {
+  display: block;
+  padding: 1px 13px 3px;
+  border: 1px solid transparent;
+  background: transparent;
+  line-height: 1;
+  text-transform: lowercase;
+  cursor: pointer;
+}
+
+.header__theme-menu-button:hover {
+  border-color: var(--button-hover-color);
+}
+
+.header__theme-menu-button:focus-visible {
+  border-block-end-color: currentColor;
+  outline: none;
+}
+
+.header__theme-menu-button_active {
+  border-color: currentColor;
+  pointer-events: none;
+}
+
+.focus-title {
+  color: var(--heading-color);
+  font-size: var(--title-size);
+  line-height: 0.825;
+}
+
+.header__title {
+  text-shadow: 4px 4px 0 var(--accent-color);
+}
+
+.title-decor {
+  color: var(--highlight-text-color);
+  background-color: var(--accent-color);
+}
+
+.header__intro {
+  justify-self: end;
+  font-weight: bold;
+}
+
+.content {
+  display: grid;
+  gap: var(--section-gap);
+  padding: calc(var(--section-gap) - var(--page-padding)) var(--page-padding);
+}
+
+.content-section,
+.content-section__cards {
+  display: grid;
+  align-content: start;
+  gap: var(--content-gap);
+}
+
+.content-section__title {
+  color: var(--section-title-color);
+  font-size: inherit;
+}
+
+.article-card {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+
+.article-card__title {
+  font-size: inherit;
+}
+
+.article-card__title_tip {
+  font-weight: normal;
+}
+
+.article-card__link {
+  text-decoration: none;
+  text-shadow: 2px 2px 0 var(--accent-color);
+}
+
+.article-card__link:hover {
+  border-block-end: 1px solid;
+}
+
+.article-card__link:focus-visible {
+  outline: 1px solid;
+}
+
+.gallery,
+.gallery__images {
+  display: grid;
+  gap: var(--page-padding);
+}
+
+.gallery__image {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+
+.footer {
+  place-items: center;
+  text-shadow: 2px 2px 0 var(--accent-color);
+}
+
+@media (width >= 768px) {
+  .header__title {
+    margin-inline-start: calc(-1 * var(--page-padding));
+  }
+
+  .header__intro {
+    inline-size: 50%;
+  }
+
+  .content-section {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+
+  .content-section_causes .content-section__cards {
+    grid-column: 1 / -1;
+  }
+
+  .gallery__images {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-areas:
+      "sunset sunset ice-cream"
+      "tape books ice-cream"
+      "tape street street";
+  }
+
+  .gallery__image {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .gallery__image_sunset {
+    grid-area: sunset;
+  }
+
+  .gallery__image_ice-cream {
+    grid-area: ice-cream;
+  }
+
+  .gallery__image_tape {
+    grid-area: tape;
+  }
+
+  .gallery__image_ice-cream,
+  .gallery__image_tape {
+    block-size: 100%;
+    min-block-size: 0;
+    contain: size;
+  }
+
+  .gallery__image_books {
+    grid-area: books;
+  }
+
+  .gallery__image_street {
+    grid-area: street;
+  }
+}
+
+@media (width >= 1024px) {
+  .header__theme-menu {
+    align-self: start;
+    justify-self: center;
+  }
+
+  .header__theme-menu-list {
+    flex-direction: row;
+  }
+
+  .content-section {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .content-section__cards {
+    grid-column: span 2;
+  }
+
+  .content-section_causes .content-section__cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
